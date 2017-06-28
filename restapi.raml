@@ -1,0 +1,76 @@
+#%RAML 1.0
+title: ClassifyWithTree
+version: v1
+baseUri: http://api.samplehost.com
+protocols: HTTP
+description:
+  - Micro-Service to Classify data with tree
+mediaType: application/xml
+types:
+  SellerGoods:
+    type: object
+    properties:
+      color: string
+      name: string
+  Message:
+    type: object
+    properties:
+      type: string
+      content: string
+  GoodsRegistry:
+    type: object
+    properties:
+      registerTime: datetime
+      status: string
+  GoodsList:
+    type: object
+    properties:
+      goodsName: string
+      goodsPath: string
+
+
+/api/Goods:
+  description: Goos Data API root route
+  post:
+    description: Register Goods to supermarket
+    displayName: RegisterGoods
+    body:
+      application/json:
+        type: SellerGoods
+    responses:
+      200:
+        body:
+          application/json:
+            type: GoodsRegistry
+      500:
+        body:
+          application/json:
+            type: Message
+  /NodeList:
+    get:
+      description: Get Xml information with a Node
+      displayName: NodeXml
+      queryParameters:
+        name: string
+      responses:
+        200:
+          body:
+            application/xml:
+              type: GoodsList
+        500:
+          body:
+            application/json:
+              type: Message
+  /TotalList:
+    get:
+      description: Get Total Data Xml information
+      displayName: TotalXml
+      responses:
+        200:
+          body:
+            application/xml:
+              type: GoodsList
+        500:
+          body:
+            application/json:
+              type: Message
