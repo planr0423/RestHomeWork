@@ -7,7 +7,7 @@ description:
   - Micro-Service to Classify data with tree
 mediaType: application/xml
 types:
-  SellerGoods:
+  existData:
     type: object
     properties:
       color: string
@@ -17,38 +17,38 @@ types:
     properties:
       type: string
       content: string
-  GoodsRegistry:
+  PostMessage:
     type: object
     properties:
-      registerTime: datetime
+      PostTime: datetime
       status: string
-  GoodsList:
+  DataList:
     type: object
     properties:
-      goodsName: string
-      goodsPath: string
+      Name: string
+      Path: string
 
 
-/api/Goods:
-  description: Goos Data API root route
+/api/Data:
+  description: Data API root route
   post:
-    description: Register Goods to supermarket
-    displayName: RegisterGoods
+    description: post Data to service
+    displayName: postData
     body:
       application/json:
-        type: SellerGoods
+        type: existData
     responses:
       200:
         body:
           application/json:
-            type: GoodsRegistry
+            type: PostMessage
       500:
         body:
           application/json:
             type: Message
   /NodeList:
     get:
-      description: Get Xml information with a Node
+      description: Get Data Xml information with a Node
       displayName: NodeXml
       queryParameters:
         name: string
@@ -56,7 +56,7 @@ types:
         200:
           body:
             application/xml:
-              type: GoodsList
+              type: DataList
         500:
           body:
             application/json:
@@ -69,7 +69,7 @@ types:
         200:
           body:
             application/xml:
-              type: GoodsList
+              type: DataList
         500:
           body:
             application/json:
