@@ -1,0 +1,80 @@
+需求(requirements):
+设计并实现一个服务可以帮助用户把层级数据(以+号分割)转换成父子关系的树状结构并以xml格式返回给调用者。
+例如:
+
+"food+fruit+apple",
+"food+rice",
+"dressing+clothes+jacket",
+"food+fruit+bananer",
+"dressing+trousers+jean",
+"food+noodle",
+"dressing+clothes+tshirt",
+"dressing+hat",
+"dressing"
+
+
+转换成
+```xml
+<root>
+	<path name="food">
+		<path name="fruit">
+			<path name="apple"></path>
+			<path name="bananer"></path>
+		</path>
+		<path name="rice"></path>
+		<path name="noodle"></path>
+	</path>
+	<path name="dressing">
+		<path name="hat"></path>
+		<path name="closthes">
+			<path name="tshirt"></path>
+			<path name="jacket"></path>
+		</path>
+		....
+	</path>
+</root>
+```
+
+用户需要3个接口:
+1. 用户可以向服务器发送路径，每次发送一条如 "food+fruit+apple"
+2. 用户根据查询一个节点，服务器需要返回该节点和其子孙节点，如查询 fruit,需要返回xml
+<path name="fruit">
+	<path name="apple"></path>
+	<path name="bananer"></path>
+</path>
+3. 用户可以查询完整的层级结构，返回完整的xml
+```xml
+<root>
+	<path name="food">
+		<path name="fruit">
+			<path name="apple"></path>
+			<path name="bananer"></path>
+		</path>
+		<path name="rice"></path>
+		<path name="noodle"></path>
+	</path>
+	<path name="dressing">
+		<path name="hat"></path>
+		<path name="closthes">
+			<path name="tshirt"></path>
+			<path name="jacket"></path>
+		</path>
+		....
+	</path>
+</root>
+```
+
+要求(acceptance criteria):
+- 代码要求干净整洁，类，方法，变量命名有明确含义且易读
+- 使用workshop学习到的任务拆分法拆分任务和模块到不同的类，方法等
+- 使用Spring Boot创建一个RESTful风格的service
+- 使用raml来表述你的API设计和数据格式
+- 不需要连接数据库，数据保存在内存
+- 创建项目的时候采用workshop推荐的目录格式(测试，部署，代码，文档)
+- 需要单元测试覆盖率100%
+- 代码上传到github
+- github的每次提交(commit)清晰且注释易读，能清楚的表述一个提交的内容
+
+注意(notes):
+本次作业不仅是对上次workshop内容的一个总结性联系，还会是后面docker, spring workshop的基础。
+
