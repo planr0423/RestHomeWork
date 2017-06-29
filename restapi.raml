@@ -12,16 +12,6 @@ types:
     properties:
       color: string
       name: string
-  Message:
-    type: object
-    properties:
-      type: string
-      content: string
-  PostMessage:
-    type: object
-    properties:
-      PostTime: datetime
-      status: string
   DataList:
     type: object
     properties:
@@ -41,26 +31,20 @@ types:
       200:
         body:
           application/json:
-            type: PostMessage
-      500:
-        body:
-          application/json:
-            type: Message
-  /NodeList:
+            type: DataList
+    /{DataName}:
     get:
-      description: Get Data Xml information with a Node
-      displayName: NodeXml
+      description: Search Data by name
+      displayName: findDataByName
       queryParameters:
         name: string
       responses:
         200:
           body:
-            application/xml:
-              type: DataList
-        500:
-          body:
-            application/json:
-              type: Message
+            application/xml
+              type: Datalist
+        403:
+        404:
   /TotalList:
     get:
       description: Get Total Data Xml information
@@ -70,7 +54,5 @@ types:
           body:
             application/xml:
               type: DataList
-        500:
-          body:
-            application/json:
-              type: Message
+        403：
+        404
