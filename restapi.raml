@@ -10,9 +10,8 @@ types:
   existData:
     type: object
     properties:
-      color: string
       name: string
-  DataList:
+  dataList:
     type: object
     properties:
       Name: string
@@ -31,7 +30,7 @@ types:
       200:
         body:
           application/json:
-            type: DataList
+            type: dataList
     /{DataName}:
     get:
       description: Search Data by name
@@ -42,17 +41,15 @@ types:
         200:
           body:
             application/xml
-              type: Datalist
-        403:
+              type: dataList
         404:
-  /TotalList:
+ /api/TotalList:
     get:
       description: Get Total Data Xml information
-      displayName: TotalXml
+      displayName: totalXml
       responses:
         200:
           body:
             application/xml:
-              type: DataList
-        403：
+              type: dataList
         404
