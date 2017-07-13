@@ -7,11 +7,12 @@ description:
   - Micro-Service to Classify data with tree
 mediaType: application/xml
 types:
-  existData:
+  Node:
     type: object
     properties:
       name: string
-  dataList:
+      childNodes: List
+  DataList:
     type: object
     properties:
       Name: string
@@ -25,14 +26,14 @@ types:
     displayName: postData
     body:
       application/json:
-        type: existData
+        type: Node
     responses:
       200:
         body:
           application/json:
-            type: dataList
+            type: DataList
     /{DataName}:
-    get:
+      get:
       description: Search Data by name
       displayName: findDataByName
       queryParameters:
@@ -41,9 +42,9 @@ types:
         200:
           body:
             application/xml
-              type: dataList
+              type: DataList
         404:
- /api/TotalList:
+/api/TotalList:
     get:
       description: Get Total Data Xml information
       displayName: totalXml
@@ -51,5 +52,5 @@ types:
         200:
           body:
             application/xml:
-              type: dataList
-        404
+              type: DataList
+        404:
