@@ -1,71 +1,69 @@
 #%RAML 1.0
-title: Auto SuperMarket Type Change API
+title: Resource conversion API
 version: v1
-baseUri: http://api.SuperMarketShell.com
+baseUri: http://api.ConversionResourceValue.com
 description:
-  - SuperMarket auto type change
+  - Resource conversion API
 types:
-  SuperMarketShell:
+  HierarchyPath:
     type: object
     properties:
-      id: number
-      demand: string
-      species: string
-      goodsname: string
-  goodsindex:
-  index:
+      value: string
+  HierarchyNode:
     type: object
     properties:
-      demandId: number
-      speciesId: number
-      goodsnameId: number
-/api/goodsmanagement:
-  description:
-    - Management of goods
+      name: string
+      childNodes: HierarchyNode[]
+/api/InputNode:
+  description: Resources to manager
   post:
-    description: The goods according to the requirement type classification
-    displayName: IntoShelf
+    description: Receive resources
+    displayName: PostData
     body:
       application/json:
-        type:  SuperMarketShell
+        type: HierarchyPath
     responses:
       200:
         body:
           application/json:
-            type: index
-      500:
+            type:
+/SearchNode:
+   description: Search Resource by value
+   displayName: findResourceValue
+   get:
+     description: Get storage resources
+     displayName:
+     responses:
+       200:
         body:
-          application/json:
-            type: goodsindex
-  /{demandId}:
-    get:
-      description: Retrieve the ID repeat
-      displayName: retrieveId
-      queryParameters:
-        token: string
+         application/xml:
+           type: HierarchyPath
+   post:
+     description: Returns query xml results
+     displayName:
+     responses:
+       200:
+          body:
+           application/xml:
+            type: HierarchyNode
+       500:
+/{findnodevalue}:
+  get:
+    description: Get Total Data Xml information
+    displayName: totalXml
+    responses:
+      200:
+        body:
+          application/xml:
+            type: HierarchyNode
+      404:
+/api/AllNode:
+   get:
+      description: Get All value Xml information
+      displayName: AllvalueXml
       responses:
         200:
           body:
-            application/json:
-              type: index
-        500:
-          body:
-            application/json:
-              type: goodsindex
+           application/xml:
+              type: HierarchyNode
         404:
-/goodsList:
-  get:
-   description: Queries on the search terms and conditions
-   displayName:
-    GoodsQueryLists
-   queryParameters:
-     token: string
-   responses:
-     200:
-       body:
-         application/xml:
-           type: index
-     500:
-       body:
-         application/json:
-           type: goodsindex
