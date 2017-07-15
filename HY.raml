@@ -12,23 +12,18 @@ types:
       demand: string
       species: string
       goodsname: string
+  goodsindex:
   index:
     type: object
     properties:
       demandId: number
       speciesId: number
       goodsnameId: number
-  Message:
-    type: object
-    properties:
-      type: string
-      content: string
 /api/goodsmanagement:
   description:
     - Management of goods
   post:
-    description:
-      The goods according to the requirement type classification
+    description: The goods according to the requirement type classification
     displayName: IntoShelf
     body:
       application/json:
@@ -41,7 +36,7 @@ types:
       500:
         body:
           application/json:
-            type: Message
+            type: goodsindex
   /{demandId}:
     get:
       description:
@@ -57,8 +52,7 @@ types:
         500:
           body:
             application/json:
-              type: Message
-        403:
+              type: goodsindex
         404:
 /goodsList:
   get:
@@ -76,20 +70,4 @@ types:
      500:
        body:
          application/json:
-           type: Message
-  /Allshowgoods:
-    get:
-      description:
-        Query all the goods
-      displayName: ShowGoodsList
-      queryParameters:
-        token: string
-      responses:
-        200:
-          body:
-            application/xml:
-              type: index
-        500:
-          body:
-            application/json:
-              type: Message
+           type: goodsindex
