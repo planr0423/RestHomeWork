@@ -14,20 +14,7 @@ types:
     properties:
       name: string
       childNodes: HierarchyNode[]
-/api/InputNode:
-  description: Resources to manager
-  post:
-    description: Receive resources
-    displayName: PostData
-    body:
-      application/json:
-        type: HierarchyPath
-    responses:
-      200:
-        body:
-          application/json:
-            type:
-/SearchNode:
+/api/Node:
    description: Search Resource by value
    displayName: findResourceValue
    get:
@@ -38,27 +25,18 @@ types:
         body:
          application/xml:
            type: HierarchyPath
+   /{value}:
+      post:
+        description: Get Total Data Xml information
+        displayName: valueXml
+        responses:
+          200:
+            body:
+              application/xml:
+                type: HierarchyNode
+          404:
+/Node:
    post:
-     description: Returns query xml results
-     displayName:
-     responses:
-       200:
-          body:
-           application/xml:
-            type: HierarchyNode
-       500:
-/{findnodevalue}:
-  get:
-    description: Get Total Data Xml information
-    displayName: totalXml
-    responses:
-      200:
-        body:
-          application/xml:
-            type: HierarchyNode
-      404:
-/api/AllNode:
-   get:
       description: Get All value Xml information
       displayName: AllvalueXml
       responses:
