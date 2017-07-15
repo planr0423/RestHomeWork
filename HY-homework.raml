@@ -1,0 +1,71 @@
+#%RAML 1.0
+title: Auto SuperMarket Type Change API
+version: v1
+baseUri: http://api.SuperMarketShell.com
+description:
+  - SuperMarket auto type change
+types:
+  SuperMarketShell:
+    type: object
+    properties:
+      id: number
+      demand: string
+      species: string
+      goodsname: string
+  goodsindex:
+  index:
+    type: object
+    properties:
+      demandId: number
+      speciesId: number
+      goodsnameId: number
+/api/goodsmanagement:
+  description:
+    - Management of goods
+  post:
+    description: The goods according to the requirement type classification
+    displayName: IntoShelf
+    body:
+      application/json:
+        type:  SuperMarketShell
+    responses:
+      200:
+        body:
+          application/json:
+            type: index
+      500:
+        body:
+          application/json:
+            type: goodsindex
+  /{demandId}:
+    get:
+      description: Retrieve the ID repeat
+      displayName: retrieveId
+      queryParameters:
+        token: string
+      responses:
+        200:
+          body:
+            application/json:
+              type: index
+        500:
+          body:
+            application/json:
+              type: goodsindex
+        404:
+/goodsList:
+  get:
+   description: Queries on the search terms and conditions
+   displayName:
+    GoodsQueryLists
+   queryParameters:
+     token: string
+   responses:
+     200:
+       body:
+         application/xml:
+           type: index
+     500:
+       body:
+         application/json:
+           type: goodsindex
