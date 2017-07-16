@@ -14,34 +14,36 @@ types:
     properties:
       name: string
       childNodes: HierarchyNode[]
-/api/Node:
+/api/Nodes:
    description: Search Resource by value
    displayName: findResourceValue
    get:
-     description: Get storage resources
-     displayName:
+     description: All value Xml information
+     displayName: AllvalueXml
      responses:
        200:
         body:
          application/xml:
-           type: HierarchyPath
-   /{value}:
-      post:
-        description: Get Total Data Xml information
-        displayName: valueXml
+           type: HierarchyNode
+       404:
+       500:
+   post:
+     description: Obtain storage resources
+     displayName: StorageResource
+     responses:
+       200:
+        body:
+          application/json:
+            type: HierarchyPath
+       500:
+   /{valuename}:
+      get:
+        description: Get Total Value Xml information
+        displayName: ValueNodeXml
         responses:
           200:
             body:
               application/xml:
                 type: HierarchyNode
           404:
-/Node:
-   post:
-      description: Get All value Xml information
-      displayName: AllvalueXml
-      responses:
-        200:
-          body:
-           application/xml:
-              type: HierarchyNode
-        404:
+          500:
