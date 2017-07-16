@@ -30,12 +30,12 @@ types:
    post:
      description: Obtain storage resources
      displayName: StorageResource
+     body:
+        application/json:
+          type: HierarchyPath
      responses:
-       200:
-        body:
-          application/json:
-            type: HierarchyPath
-       500:
+        200:
+        500:
    /{valuename}:
       get:
         description: Get Total Value Xml information
