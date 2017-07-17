@@ -11,46 +11,42 @@ types:
     type: object
     properties:
       name: string
-      childNodes: List
+      childNodes: Hashmap
   DataList:
-    type: object
-    properties:
-      Name: string
-      Path: string
+  	type: object
+  	properties:
+  	  path: String
 
 
-/api/Data:
-  description: Data API root route
-  post:
-    description: post Data to service
-    displayName: postData
-    body:
-      application/json:
-        type: Node
-    responses:
-      200:
-        body:
-          application/json:
-            type: DataList
-    /{DataName}:
-      get:
-      description: Search Data by name
-      displayName: findDataByName
-      queryParameters:
-        name: string
-      responses:
-        200:
-          body:
-            application/xml
-              type: DataList
-        404:
-/api/TotalList:
-    get:
-      description: Get Total Data Xml information
+/api/Nodes:
+  description: Node API root route
+  get:
+      description: Get Total Node Xml information
       displayName: totalXml
       responses:
         200:
           body:
             application/xml:
-              type: DataList
+              type: Node
         404:
+
+  post:
+    description: post Data to service
+    displayName: postData
+    body:
+      application/json:
+        type: DataList
+    responses:
+      200:
+
+    /{NodeName}:
+      get:
+      description: Search Nodes by name
+      displayName: findNodeByName
+      responses:
+        200:
+          body:
+            application/xml
+              type: Node
+        404:
+
