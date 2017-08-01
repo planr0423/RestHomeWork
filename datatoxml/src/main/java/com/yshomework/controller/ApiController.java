@@ -29,16 +29,7 @@ public class ApiController {
     }
     @RequestMapping(value = "/Nodes", method = {RequestMethod.POST})
     public void postData(@RequestBody DataList dataList){
-        Node node;
-        Node parentNode = treeModel.getRootNode();
-        for(String name:dataList.getPath().split("[+]")){
-            node = nodeSearcher.findNodeByName(name);
-            if(node == null){
-                node=nodeFactory.creatNodeByPath(dataList);
-                treeModel.addChildNode(node,parentNode);
-            }
-            parentNode = node;
-        }
+        nodeFactory.creatNodeByPath(dataList);
     }
     @RequestMapping(value = "Nodes/{NodeName}",method = {RequestMethod.GET})
     public String findNodeByName(Node node) throws Exception {
@@ -46,7 +37,6 @@ public class ApiController {
         String pathForXml = formatter.format(thisNode);
         return pathForXml;
     }
-
 }
 
 

@@ -6,13 +6,10 @@ import com.yshomework.nodeTools.toolesInterface.NodeFactory;
 import com.yshomework.nodeTools.toolesInterface.NodeSearcher;
 import com.yshomework.nodeTools.toolesInterface.TreeModel;
 
-/**
- * Created by lubeeplant on 17-7-31.
- */
 public class NodeFactoryImpl implements NodeFactory {
+    TreeModel treeModel = new TreeModelImpl();
     @Override
     public Node creatNodeByPath(DataList dataList) {
-        TreeModel treeModel = new TreeModelImpl();
         NodeSearcher nodeSearcher = new NodeSearcherImpl();
         Node node = null;
         Node parentNode = treeModel.getRootNode();
