@@ -7,6 +7,9 @@ import com.yshomework.Models.Node;
  * Created by lubeeplant on 17-7-30.
  */
 public interface NodeFactory {
-    public Node creatNodeByPath(DataList path);
+    Node createNodeByPath(DataList path);
 
+    void setTreeModel(TreeModel model);
+
+    void setNodeSearcher(NodeSearcher searcher);
 }

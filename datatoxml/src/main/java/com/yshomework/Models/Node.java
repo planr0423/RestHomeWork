@@ -1,6 +1,7 @@
 package com.yshomework.Models;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Map;
 @XmlRootElement (name = "path")
 public class Node {
     private String name;
-    private Map<String,Node> childNode;
+    private Map<String,Node> childNode = new HashMap();
 
     public String getName() {
         return name;
